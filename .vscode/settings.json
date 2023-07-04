@@ -1,0 +1,14 @@
+{
+    "python.terminal.activateEnvironment": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnType": true
+    },
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length", "79"
+    ],
+    "files.associations": {
+        "*.py": "python"
+    }
+}
