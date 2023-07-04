@@ -14,27 +14,64 @@ Before setting up the project, ensure that you have the following prerequisites 
 1. Clone the project repository:
 
 ```shell
-   git clone <repository-url>
-   cd superlists
+   git clone git@github.com:eduardorezaghi/tdd-python-django.git
+   cd tdd-python-django
 ```
 
 2. Create and activate a virtual environment using virtualenvwrapper. If you don't have virtualenvwrapper installed, you can install it using pip:
-* Create a virtual environment named `superlists`:
 ```shell
-   mkvirtualenv superlists
+   pip install virtualenvwrapper
 ```
 
-* Activate the virtual environment:
+After the installation completes, you need to configure your shell to work with virtualenvwrapper. The configuration involves setting up environment variables and updating your shell's startup file (`~/.bashrc`, `~/.bash_profile`, or `~/.zshrc`, depending on your shell).
+* Open the shell's startup file in a text editor:
 ```shell
-   workon superlists
+   nano ~/.bashrc  # or ~/.bash_profile or ~/.zshrc
 ```
 
-3. Install the project dependencies:
+* Add the following lines at the end of the file:
+```shell
+    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python  # Path to your Python interpreter
+    export WORKON_HOME=$HOME/.virtualenvs
+    source /usr/local/bin/virtualenvwrapper.sh  # Path to virtualenvwrapper.sh
+```
+Note: If the virtualenvwrapper.sh file is located in a different path, adjust the source line accordingly.
+
+
+Reload the shell's startup file to apply the changes. Run one of the following commands depending on your shell:
+
+For Bash or Zsh:
+```shell
+source ~/.bashrc  # or ~/.zshrc
+```
+
+With the shell reloaded, you should now be able to use virtualenvwrapper commands. Test it by running:
+```shell
+workon
+```
+This command should list any existing virtual environments or display an empty list if none exist yet.
+
+3.  Create a virtual environment named `tdd-python-django`:
+```shell
+   mkvirtualenv tdd-python-django
+```
+
+4. Activate the virtual environment:
+```shell
+   workon tdd-python-django
+```
+To deactivate the virtual environment and return to your default system environment, execute:
+
+```shell
+deactivate
+```
+
+5. Install the project dependencies:
 ```shell
    pip install -r requirements.txt
 ```
 
-4. Run database migrations:
+6. Run database migrations:
 ```shell
    python manage.py migrate
 ```
