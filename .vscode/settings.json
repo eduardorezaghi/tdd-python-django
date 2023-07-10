@@ -9,6 +9,11 @@
     "python.formatting.blackArgs": [
         "--line-length", "79"
     ],
+    "pylint.args": [
+        "--disable=C0111", // Rule: missing docstring
+        "--load-plugins", "pylint_django",
+        "--django-settings-module=superlists.settings"
+     ],
     "files.associations": {
         "*.py": "python"
     }
