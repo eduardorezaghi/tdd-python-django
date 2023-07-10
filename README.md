@@ -6,7 +6,7 @@ This is a Python project built using Django framework built using TDD practices.
 
 Before setting up the project, ensure that you have the following prerequisites installed on your system:
 
-- Python 3.x
+- Python 3.11.x _(latest Python 3.11 patch-level)_
 - pip package manager
 
 ## Installation
@@ -18,12 +18,12 @@ Before setting up the project, ensure that you have the following prerequisites 
    cd tdd-python-django
 ```
 
-2. Create and activate a virtual environment using virtualenvwrapper. If you don't have virtualenvwrapper installed, you can install it using pip:
+2. Create and activate a virtual environment using `virtualenvwrapper`. If you don't have `virtualenvwrapper` installed, you can install it using pip:
 ```shell
    pip install virtualenvwrapper
 ```
 
-After the installation completes, you need to configure your shell to work with virtualenvwrapper. The configuration involves setting up environment variables and updating your shell's startup file (`~/.bashrc`, `~/.bash_profile`, or `~/.zshrc`, depending on your shell).
+After the installation completes, you need to configure your shell to work with `virtualenvwrapper`. The configuration involves setting up environment variables and updating your shell's startup file (`~/.bashrc`, `~/.bash_profile`, or `~/.zshrc`, depending on your shell).
 * Open the shell's startup file in a text editor:
 ```shell
    nano ~/.bashrc  # or ~/.bash_profile or ~/.zshrc
@@ -35,7 +35,7 @@ After the installation completes, you need to configure your shell to work with 
     export WORKON_HOME=$HOME/.virtualenvs
     source /usr/local/bin/virtualenvwrapper.sh  # Path to virtualenvwrapper.sh
 ```
-Note: If the virtualenvwrapper.sh file is located in a different path, adjust the source line accordingly.
+_Note: If the virtualenvwrapper.sh file is located in a different path, adjust the source line accordingly._
 
 
 Reload the shell's startup file to apply the changes. Run one of the following commands depending on your shell:
@@ -73,6 +73,7 @@ deactivate
 
 6. Run database migrations:
 ```shell
+   cd superlists/
    python manage.py migrate
 ```
 ---
@@ -80,12 +81,13 @@ deactivate
 ### Running the Local Development Server
 * To start the local development server, execute the following command:
 ```shell
+   cd superlists/
    python manage.py runserver
 ```
 By default, the server will run on http://localhost:8000/. Open this URL in your web browser to access the application.
 
 ### Managing Migrations
-Django provides a built-in migration system to manage changes to your database schema. To create and apply new migrations, use the following commands:
+Django provides a built-in migration system to manage changes to your database schema. To create and apply new migrations, use the following commands (while being on `superlists/` folder):
 
 * Create a new migration based on the changes you made to your models:
 
@@ -100,10 +102,13 @@ python manage.py migrate
 ```
 
 ### Running Tests
-This project includes functional tests that can be run using the functional_tests.py file. To execute the tests, use the following command:
+This project includes unit and functional tests that can be run either by a manage.py command or by using the functional_tests.py file. To execute the tests, use the following command (while being on `superlists/` folder):
+* Unit tests:
+```shell
+python manage.py tests
+```
 
+* Functional (or E2E) tests:
 ```shell
 python functional_tests.py
 ```
-
-This command will run the functional tests and display the test results in the console.
