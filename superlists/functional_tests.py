@@ -17,7 +17,7 @@ class NewVisitorTests(unittest.TestCase):
         self.browser.get("http://localhost:8000/")
 
         # He notices the page title and header mention to-do lists
-        self.assertIn("To-Do",self.browser.title)
+        self.assertIn("To-Do", self.browser.title)
         header_text = self.browser.find_element(By.TAG_NAME, "h1")
         self.assertIn("To-Do", header_text.text)
 
@@ -35,25 +35,33 @@ class NewVisitorTests(unittest.TestCase):
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
 
-        table = self.browser.find_element(By.ID, 'id_list_table')
+        table = self.browser.find_element(By.ID, "id_list_table")
 
         # Note: use find_elements(...) to return an list of items
-        rows = table.find_elements(By.TAG_NAME, 'tr')
+        rows = table.find_elements(By.TAG_NAME, "tr")
 
-        self.assertTrue(
-            any(row.text == '1: Buy latte coffee' for row in rows),
-            "New to-do item did not appear in table"
-        )
+        self.assertIn("1: Buy latte coffee", [row.text for row in rows])
 
         # There is still a text box inviting her to add another item. he
         # enters "Drink latte coffee to energize my morning".
-        self.fail("Finish the test!")
+        inputbox = self.browser.find_element(By.ID, "id_new_item")
+        inputbox.send_keys("Drink latte coffee to energize my morning")
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
 
         # The page updates again, and now shows both items on her list
+        table = self.browser.find_element(By.ID, "id_list_table")
+        rows = table.find_elements(By.TAG_NAME, "tr")
+        self.assertIn("1: Buy latte coffee", [row.text for row in rows])
+        self.assertIn(
+            "2: Drink latte coffee to energize my morning",
+            [row.text for row in rows],
+        )
 
         # The user wonders whether the site will remember her list. Then he sees
         # that the site has generated a unique URL -- there is some
         # explanatory text to that effect.
+        self.fail("Finish the test!")
 
         # He visits that URL - her to-do list is still there.
 
@@ -61,4 +69,4 @@ class NewVisitorTests(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main(warnings='ignore')
+    unittest.main(warnings="ignore")
