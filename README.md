@@ -110,5 +110,5 @@ python manage.py tests
 
 * Functional (or E2E) tests:
 ```shell
-python functional_tests.py
+python manage.py test functional_tests
 ```
