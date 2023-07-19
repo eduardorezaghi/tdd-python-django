@@ -1,0 +1,17 @@
+version: '3'
+services:
+    postgres:
+        container_name: application-postgres
+        image: postgres:15.3
+        environment:
+           - POSTGRES_DB=${DB_NAME}
+           - POSTGRES_USER=${DB_USER}
+           - POSTGRES_PASSWORD=${DB_PASSWORD}
+        volumes:
+            - postgres-django:/var/lib/postgresql/data
+        ports:
+            - 5433:5432
+
+volumes:
+  postgres-django:
+    driver: local
